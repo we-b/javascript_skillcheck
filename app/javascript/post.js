@@ -7,7 +7,15 @@ function post (){
     XHR.responseType = "json";
     XHR.send(formData);
     XHR.onload = () => {
-      console.log(XHR.response.article);
+      const item = XHR.response.article;
+      const contentsArea = document.getElementById("contents_area");
+      const articleText = document.getElementById("article_text");
+      const HTML = `
+        <div class="article">
+          ${ item.text }
+        </div>`;
+      contentsArea.insertAdjacentHTML("afterbegin", HTML);
+      articleText.value = "";
     };
     e.preventDefault();
   });
