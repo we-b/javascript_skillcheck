@@ -7,6 +7,10 @@ function post() {
     XHR.responseType = "json";
     XHR.send(formData);
     XHR.onload = () => {
+      if (XHR.status != 200) {
+        alert(`Error ${XHR.status}: ${XHR.statusText}`);
+        return null;
+      }
       const item = XHR.response.article;
       const contentsArea = document.getElementById("contents_area");
       const articleText = document.getElementById("article_text");
