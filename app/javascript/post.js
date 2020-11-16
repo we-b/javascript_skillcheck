@@ -17,11 +17,17 @@ function post (){
     //レスポンスとして欲しい情報の形式を指定
     XHR.responseType = "json";
     // Ajaxで送信
-    XHR.send();
+    XHR.send(formData);
 
     //『↑ここまでがリクエストの送信までの処理』
+    // //『↓ここからがレスポンス受信後の処理』
 
-    
+    // Ajaxによる処理が終了したあとに呼び出されるイベントハンドラー
+    XHR.onload = () => {
+      // レスポンスの内容を出力
+      console.log(XHR.response.article);
+    };
+
     // このままだとブラウザ上に用意されているデフォルトの送信が機能してしまい、重複してしまう
     // デフォルトの送信をキャンセル
     e.preventDefault();
