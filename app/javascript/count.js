@@ -6,7 +6,9 @@ function count (){
   // その要素に何らかのキーボード操作が↓あった場合に、イベントが発火するように
   articleText.addEventListener("keyup", () => {
     // 取得した要素に含まれている値を出力
-    console.log(articleText.value);
+    // console.log(articleText.value);（問題2で試しに記述）
+    // 文字の数を数えるためには、lengthメソッドで文字数を出力
+    console.log(articleText.value.length);
   });
 
 
