@@ -25,7 +25,22 @@ function post (){
     // Ajaxによる処理が終了したあとに呼び出されるイベントハンドラー
     XHR.onload = () => {
       // レスポンスの内容を出力
-      console.log(XHR.response.article);
+      // console.log(XHR.response.article);（問題4で試しに記述）
+
+      // レスポンスのうち、コントローラー側で指定したjson形式のデータを変数に代入
+      const item = XHR.response.article;
+      // 投稿したデータを追加する要素の取得（親要素）
+      const contentsArea = document.getElementById("contents_area");
+      // フォーム投稿の際にテキストを入力した、テキストエリアを取得
+      const articleText = document.getElementById("article_text");
+
+      // 追加する要素を定義
+      // レスポンスとして返されたデータのうち、textのプロパティを指定
+      const HTML = `<div class="article">${ item.text }</div>`;
+      // 親要素に直前で定義した要素を追加  ↓親要素内の最上部に追加することを意味
+      contentsArea.insertAdjacentHTML("afterbegin", HTML);
+      // フォームの入力欄を空に
+      articleText.value = "";
     };
 
     // このままだとブラウザ上に用意されているデフォルトの送信が機能してしまい、重複してしまう
