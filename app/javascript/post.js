@@ -27,6 +27,14 @@ function post (){
       // レスポンスの内容を出力
       // console.log(XHR.response.article);（問題4で試しに記述）
 
+      // HTTPステータスコードが「200以外のとき」
+      if (XHR.status != 200) {
+        // HTTPステータスコード↓ そのステータスを表す文言↓
+        alert(`Error ${XHR.status}: ${XHR.statusText}`);
+        // エラーについてのアラートが表示されたら、それ以降の処理は行う必要がないので抜け出す
+        return null;
+      }
+
       // レスポンスのうち、コントローラー側で指定したjson形式のデータを変数に代入
       const item = XHR.response.article;
       // 投稿したデータを追加する要素の取得（親要素）
