@@ -18,3 +18,4 @@ require("channels")
 
 // 作成したファイルを読み込むためには、application.jsで設定
 require("../post")
+require("../count")
