@@ -7,7 +7,19 @@ function post (){
     XHR.responseType = "json";
     XHR.send(formData);
     XHR.onload = () => {
-     
+      if (XHR.status != 200) {
+        alert(`Error ${XHR.status}: ${XHR.statusText}`);
+        return null;
+      }
+      const item = XHR.response.articles;
+      const contentArea = document.getElementById("contents_area");
+      const articleText = document.getElementById("article_text");
+      const HTML = `
+        <div class="article">
+        ${ item.text }
+        </div>`;
+      contentsArea.insertAdjacentHTML("afterbegin", HTML);
+      articleText.value = "";
     };
     e.preventDefault();
   });
