@@ -1,4 +1,9 @@
-function post() {
-  console.log("非同期通信を実装");
+function post (){
+  const submit = document.getElementById("submit_btn");
+  submit.addEventListener("click", (e) => {
+
+    e.preventDefault();
+  });
 }
-window.addEventListener("load", post);
+
+window.addEventListener('load', post);
