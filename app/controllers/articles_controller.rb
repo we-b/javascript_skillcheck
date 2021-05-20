@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    binding.pry #フォームの投稿ボタンをクリックしたら、binding.prymで止まる実装
     article = Article.new(article_params)
     if article.save
       redirect_to index 
