@@ -8,7 +8,15 @@ function post(){
     XHR.open("POST", "/articles", true); //ルート。Ajaxに関する情報を初期化し、URIを設定
     XHR.responseType = "json"; //レスポンスとして求める形式をjson形式に指定
     XHR.send(formData); //Ajaxで送信
-    XHR.onload = () => { //サーバからのレスポンス受信に成功して「投稿」内容がブラウザに表示される
+    
+    //レスポンスの受信時の内容
+    XHR.onload = () => { 
+      //200(HTTPステータスコードが200のとき、すなわち正常にリクエスト・レスポンスが行われているとき)以外のエラーをポップアップで表示させる
+      if(XHR.status != 200){
+        alert(`Error： ${XHR.status}: ${XHR.statusText}`); //XHR.statusはHTTPステータスコードを表している。XHR.statusTextはそのステータスを表す文言が含まれている。
+        //return null;
+      };
+      //サーバからのレスポンス受信に成功して「投稿」内容がブラウザに表示される
       const item = XHR.response.article;
       const contentsArea = document.getElementById("contents_area"); // 今回投稿したデータを追加する要素を取得している。(今回追加する要素の親要素にあたる)
       const articleText = document.getElementById("article_text"); //フォーム投稿の際にテキストを入力した、テキストエリアを取得している(idはブラウザのElementsを見て、フォーム投稿の箱のinput class="article_form"のidをgetElementByIdに記述)
@@ -21,7 +29,7 @@ function post(){
       articleText.value = ""; //新規投稿が完了したら「フォーム入力蘭」を空にする
     };
     e.preventDefault(); // ブラウザ上に用意されているデフォの送信をキャンセルして、重複送信をさせない 
-  })
-}
+  });
+};
 
-window.addEventListener('load', post);
+window.addEventListener("load", post);
