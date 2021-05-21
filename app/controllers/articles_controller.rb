@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
     #article = Article.create(content: params[:content]) #textカラム取得？afterbeginどこに書くんだ？
     #render json:{post: post} #render jsonかな ?
     if article.save
-      redirect_to index 
+      render json: {article: article} #
     end
   end
 

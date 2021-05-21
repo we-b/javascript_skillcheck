@@ -2,7 +2,7 @@ function post(){
   const submit = document.getElementById("submit_btn"); //ブラウザelementsの<input type="submit"~>のidの部分を見て、getElementByIdで取得
   submit.addEventListener("click", (e) => {
     // console.log(document.getElementById("new_article")); //投稿したフォームの情報がコンソールに表示される(この"new_article"はブラウザelementsの<form id="new_article"〜>を見て記述。コンソールに表示されることを確認したら削除
-    // #e.preventDefault(); // ブラウザ上に用意されているデフォの送信をキャンセルして、重複送信をさせない
+    //!この場所の記述でも問題ないが、意味合いとしてはこのメソッドの一番下があってる。e.preventDefault(); 
     const formData = new FormData(document.getElementById("new_article")); //フォームの情報を取得し、Ajaxへ送信できる形へ整形
     const XHR = new XMLHttpRequest(); //Ajax非同期通信のため、Ajaxに利用するオブジェクトを生成
     XHR.open("POST", "/articles", true); //ルート。Ajaxに関する情報を初期化し、URIを設定
@@ -20,7 +20,7 @@ function post(){
       contentsArea.insertAdjacentHTML("afterbegin", HTML); // 上で定義した(投稿した内容の入っているクラスclass="contents"のid"contents_area"の入った)contentsAreaを用いて、要素を追加している。afterbegin == 親要素内の最上部に追加 == 新規投稿内容が最上部に表示する、の記述    
       articleText.value = ""; //新規投稿が完了したら「フォーム入力蘭」を空にする
     };
-    e.preventDefault();  
+    e.preventDefault(); // ブラウザ上に用意されているデフォの送信をキャンセルして、重複送信をさせない 
   })
 }
 
