@@ -8,8 +8,9 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    binding.pry #フォームの投稿ボタンをクリックしたら、binding.prymで止まる実装
     article = Article.new(article_params)
+    #article = Article.create(content: params[:content]) #textカラム取得？afterbeginどこに書くんだ？
+    #render json:{post: post} #render jsonかな ?
     if article.save
       redirect_to index 
     end
