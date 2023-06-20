@@ -10,7 +10,8 @@ class ArticlesController < ApplicationController
   def create
     article = Article.new(article_params)
     if article.save
-      redirect_to index 
+      #redirect_to index 下部追記したら削除する
+      render json: {article: article} #JSON形式でレスポンスを返すように、コントローラーで設定をする
     end
   end
 
