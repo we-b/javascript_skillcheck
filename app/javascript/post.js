@@ -22,6 +22,9 @@ function post (){
         </div>`; //15行目から18行目で、今回追加する要素を定義しています。${ item.text }によって、レスポンスとして返されたデータのうち、textのプロパティを指定しています。textカラムの情報だけ表示させる
       contentsArea.insertAdjacentHTML("afterbegin", HTML);  //親要素に直前で定義した要素を追加しています。最上部に表示する（afterbeginを指定する）
       articleText.value = ""; //フォームの入力欄を空にしています。処理が完了したら、フォームのテキストエリアは空にする
+
+      const charNum  = document.getElementById("char_num");  //「○○文字」と表示される部分のidを取得する
+      charNum.innerHTML = "0文字";  //0文字」という文字列を挿入すれば、POSTボタンをクリックした時に「0文字」と表示させる
     };
     e.preventDefault();
   });
